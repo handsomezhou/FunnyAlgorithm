@@ -1,0 +1,2 @@
+# FunnyAlgorithm
+Funny algorithm.
