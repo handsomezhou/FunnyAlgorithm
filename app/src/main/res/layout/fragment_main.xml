@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
 
-</LinearLayout>
+
+
+    <com.handsomezhou.funnyalgorithm.view.BottomTabView
+        android:id="@+id/bottom_tab_view"
+        android:layout_width="match_parent"
+        android:layout_height="54dp"
+        android:layout_alignParentBottom="true" />
+
+    <View
+        android:id="@+id/dividing_line_view"
+        style="@style/dividing_line_horizontal"
+        android:layout_above="@+id/bottom_tab_view" />
+
+    <com.handsomezhou.funnyalgorithm.view.CustomViewPager
+        android:id="@+id/custom_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/dividing_line_view" />
+
+
+
+</RelativeLayout>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="horizontal_divider_height">2</integer>
+    <integer name="vertical_divider_width">2</integer>
+
+</resources>
