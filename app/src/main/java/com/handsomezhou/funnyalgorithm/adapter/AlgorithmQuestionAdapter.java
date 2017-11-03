@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.handsomezhou.funnyalgorithm.R;
+import com.handsomezhou.funnyalgorithm.constant.Constant;
 import com.handsomezhou.funnyalgorithm.model.AlgorithmQuestion;
 
 import java.util.List;
@@ -46,6 +47,7 @@ public class AlgorithmQuestionAdapter extends RecyclerView.Adapter<RecyclerView.
         AlgorithmQuestionViewHolder algorithmQuestionViewHolder =(AlgorithmQuestionViewHolder)holder;
         if(null!= algorithmQuestionViewHolder){
             if(null!=algorithmQuestion){
+                algorithmQuestionViewHolder.mIndexTv.setText(Constant.NULL_STRING+(position+1));
                 algorithmQuestionViewHolder.mQuestionTv.setText(algorithmQuestion.getQuestion());
             }
         }
@@ -90,11 +92,13 @@ public class AlgorithmQuestionAdapter extends RecyclerView.Adapter<RecyclerView.
 
     public  class AlgorithmQuestionViewHolder extends RecyclerView.ViewHolder {
 
+        public TextView mIndexTv;
         public TextView mQuestionTv;
 
 
         public AlgorithmQuestionViewHolder(View view){
             super(view);
+            mIndexTv=(TextView) view.findViewById(R.id.index_text_view);
             mQuestionTv=(TextView) view.findViewById(R.id.question_text_view);
 
 

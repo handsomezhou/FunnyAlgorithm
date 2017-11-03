@@ -14,17 +14,17 @@ public class AlgorithmQuestion {
      * knowledgeKeywords : ["递归","深度搜索"]
      */
 
-    private int id;
+    private long id;
     private String question;
     private String questionDescription;
     private String questionSource;
     private String knowledgeKeywords;
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

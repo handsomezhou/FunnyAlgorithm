@@ -9,15 +9,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.handsomezhou.funnyalgorithm.AlgorithmQuestionHelper;
+import com.handsomezhou.funnyalgorithm.activity.AlgorithmQuestionDetailsActivity;
+import com.handsomezhou.funnyalgorithm.helper.AlgorithmQuestionHelper;
 import com.handsomezhou.funnyalgorithm.R;
 import com.handsomezhou.funnyalgorithm.adapter.AlgorithmQuestionAdapter;
 import com.handsomezhou.funnyalgorithm.model.AlgorithmQuestion;
+import com.handsomezhou.funnyalgorithm.model.AlgorithmQuestionDetailsParameter;
+import com.handsomezhou.funnyalgorithm.util.ToastUtil;
 import com.handsomezhou.funnyalgorithm.util.ViewUtil;
 import com.handsomezhou.funnyalgorithm.view.RecycleViewDivider;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by zhoujq on 2017/10/31.
@@ -47,15 +47,14 @@ public class AlgorithmQuestionFragment extends BaseFragment implements Algorithm
         View view = inflater.inflate(R.layout.fragment_algorithm_question, container, false);
         mAlgorithmQuestionRv=(RecyclerView) view.findViewById(R.id.algorithm_question_recycler_view);
         mNoDataTipsTv=(TextView) view.findViewById(R.id.no_data_tips_text_view);
-        mAlgorithmQuestionRv.setLayoutManager( new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL));
 
+        mAlgorithmQuestionRv.setLayoutManager(new LinearLayoutManager(getActivity()));
         mAlgorithmQuestionRv.setItemAnimator(new DefaultItemAnimator());
-        //mAlgorithmQuestionRv.addItemDecoration(new RecycleViewDivider(getContext(), LinearLayoutManager.VERTICAL));
         mAlgorithmQuestionRv.addItemDecoration(new RecycleViewDivider(getContext(), LinearLayoutManager.HORIZONTAL, getContext().getResources().getInteger(R.integer.horizontal_divider_height),getContext().getResources().getColor(R.color.color_horizontal_divider)));
-        mAlgorithmQuestionRv.addItemDecoration(new RecycleViewDivider(getContext(), LinearLayoutManager.VERTICAL, getContext().getResources().getInteger(R.integer.vertical_divider_width),getContext().getResources().getColor(R.color.color_vertical_divider)));
         mAlgorithmQuestionAdapter=new AlgorithmQuestionAdapter(getContext(),R.layout.list_item_algorithm_question, AlgorithmQuestionHelper.getInstance().getAlgorithmQuestions());
         mAlgorithmQuestionAdapter.setOnAlgorithmQuestionAdapter(this);
         mAlgorithmQuestionRv.setAdapter(mAlgorithmQuestionAdapter);
+
         return view;
     }
 
@@ -69,10 +68,29 @@ public class AlgorithmQuestionFragment extends BaseFragment implements Algorithm
     @Override
     public void onItemClick(AlgorithmQuestion algorithmQuestion) {
 
+        do{
+            if(null==algorithmQuestion){
+                break;
+            }
+
+            AlgorithmQuestionDetailsParameter algorithmQuestionDetailsParameter=new AlgorithmQuestionDetailsParameter();
+            algorithmQuestionDetailsParameter.setId(algorithmQuestion.getId());
+            AlgorithmQuestionDetailsActivity.launch(getActivity(),algorithmQuestionDetailsParameter);
+
+        }while (false);
+
     }
 
     @Override
     public void onLongClick(AlgorithmQuestion algorithmQuestion) {
+
+        do{
+            if(null==algorithmQuestion){
+                break;
+            }
+
+            //ToastUtil.toastLengthshort(getContext(),algorithmQuestion.getQuestion());
+        }while (false);
 
     }
     /*end: AlgorithmQuestionAdapter.OnAlgorithmQuestionAdapter*/

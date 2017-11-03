@@ -1,7 +1,8 @@
-package com.handsomezhou.funnyalgorithm;
+package com.handsomezhou.funnyalgorithm.helper;
 
 import android.content.Context;
 
+import com.handsomezhou.funnyalgorithm.R;
 import com.handsomezhou.funnyalgorithm.model.AlgorithmQuestion;
 import com.handsomezhou.funnyalgorithm.util.JsonUtil;
 import com.handsomezhou.funnyalgorithm.util.LogUtil;

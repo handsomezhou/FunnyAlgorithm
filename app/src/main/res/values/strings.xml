@@ -10,8 +10,9 @@
     <string name="more">更多</string>
     <!-- end:home page -->
 
-    <string name="no_data">无数据</string>
+    <string name="algorithm_question_details">算法题详情</string>
 
+    <string name="no_data">无数据</string>
     <string name="settings">设置</string>
     <string name="about">关于</string>
 </resources>
