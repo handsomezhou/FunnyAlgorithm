@@ -3,6 +3,7 @@ package com.handsomezhou.funnyalgorithm.util;
 import android.app.Activity;
 import android.text.Html;
 import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
@@ -49,6 +50,26 @@ public class ViewUtil {
                 + baseText.substring(index + len, baseText.length()));
 		
 		tv.setText(spanned);
+	}
+
+	/**
+	 *
+	 * @param tv
+	 * @param text
+	 * @param link
+	 */
+	public static void showTextHighlightLink(TextView tv, String text, String link){
+		do{
+			if((null==tv)||(null==text)||(null==link)){
+				break;
+			}
+
+			tv.setMovementMethod(LinkMovementMethod.getInstance());
+			String textHighlightLink = "<a href='"+link+"'>"+ text +"</a>";
+			tv.setText(Html.fromHtml(textHighlightLink));
+		}while (false);
+
+		return;
 	}
 	
 	public static int getViewVisibility(View view) {

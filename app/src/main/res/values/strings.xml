@@ -11,6 +11,7 @@
     <!-- end:home page -->
 
     <string name="algorithm_question_details">算法题详情</string>
+    <string name="reference_solution">reference solution</string>
 
     <string name="no_data">无数据</string>
     <string name="settings">设置</string>

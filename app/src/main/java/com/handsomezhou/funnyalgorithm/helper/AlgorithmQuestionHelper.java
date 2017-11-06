@@ -72,4 +72,23 @@ public class AlgorithmQuestionHelper {
         return;
     }
 
+    public AlgorithmQuestion get(long id){
+        AlgorithmQuestion algorithmQuestion=null;
+
+        do{
+            if(null==mAlgorithmQuestions||mAlgorithmQuestions.size()<=0){
+                break;
+            }
+
+            for (AlgorithmQuestion aq:mAlgorithmQuestions) {
+                if(aq.getId()==id){
+                    algorithmQuestion=aq;
+                    break;
+                }
+            }
+        }while (false);
+
+        return algorithmQuestion;
+    }
+
 }

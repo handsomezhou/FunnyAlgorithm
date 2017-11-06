@@ -1,14 +1,20 @@
 package com.handsomezhou.funnyalgorithm.fragment;
 
 import android.os.Bundle;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.handsomezhou.funnyalgorithm.R;
+import com.handsomezhou.funnyalgorithm.helper.AlgorithmQuestionHelper;
+import com.handsomezhou.funnyalgorithm.model.AlgorithmQuestion;
 import com.handsomezhou.funnyalgorithm.model.AlgorithmQuestionDetailsParameter;
 import com.handsomezhou.funnyalgorithm.util.ActivityUtil;
 import com.handsomezhou.funnyalgorithm.util.ToastUtil;
+import com.handsomezhou.funnyalgorithm.util.ViewUtil;
 import com.handsomezhou.funnyalgorithm.view.NavigationBarLayout;
 
 /**
@@ -20,7 +26,15 @@ public class AlgorithmQuestionDetailsFragment extends BaseFragment implements Na
 
     private NavigationBarLayout mNavigationBarLayout;
     private String mTitle;
+
+    private TextView mQuestionTv;
+    private TextView mQuestionDescriptionTv;
+    private TextView mReferenceSolutionTv;
+
+    private AlgorithmQuestion mAlgorithmQuestion;
     private AlgorithmQuestionDetailsParameter mAlgorithmQuestionDetailsParameter;
+
+
 
     public static AlgorithmQuestionDetailsFragment newInstance( AlgorithmQuestionDetailsParameter algorithmQuestionDetailsParameter) {
         Bundle bundle = new Bundle();
@@ -41,6 +55,7 @@ public class AlgorithmQuestionDetailsFragment extends BaseFragment implements Na
         super.onCreate(savedInstanceState);
         if (getArguments().containsKey(EXTRA_ALGORITHM_QUESTION_DETAILS_PARAMETER)) {
             mAlgorithmQuestionDetailsParameter = (AlgorithmQuestionDetailsParameter) getArguments().getSerializable(EXTRA_ALGORITHM_QUESTION_DETAILS_PARAMETER);
+            mAlgorithmQuestion= AlgorithmQuestionHelper.getInstance().get(mAlgorithmQuestionDetailsParameter.getId());
         } else {
             mAlgorithmQuestionDetailsParameter = new AlgorithmQuestionDetailsParameter();
         }
@@ -50,9 +65,7 @@ public class AlgorithmQuestionDetailsFragment extends BaseFragment implements Na
     @Override
     public void onResume() {
         super.onResume();
-        if(null!=mAlgorithmQuestionDetailsParameter){
-            ToastUtil.toastLengthshort(getContext(),"id:"+mAlgorithmQuestionDetailsParameter.getId());
-        }
+        refreshView();
     }
 
     @Override
@@ -69,12 +82,20 @@ public class AlgorithmQuestionDetailsFragment extends BaseFragment implements Na
         mNavigationBarLayout.setOnNavigationBarLayout(this);
         mNavigationBarLayout.setTitle(mTitle);
 
+        mQuestionTv=(TextView) view.findViewById(R.id.question_text_view);
+        mQuestionDescriptionTv=(TextView) view.findViewById(R.id.question_description_text_view);
+        mReferenceSolutionTv=(TextView) view.findViewById(R.id.reference_solution_text_view);
         return view;
     }
 
     @Override
     protected void initListener() {
-
+        mReferenceSolutionTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                viewReferenceSolution(mAlgorithmQuestion.getId());
+            }
+        });
     }
 
     /*start: NavigationBarLayout.OnNavigationBarLayout*/
@@ -83,4 +104,27 @@ public class AlgorithmQuestionDetailsFragment extends BaseFragment implements Na
         ActivityUtil.back(getActivity());
     }
     /*end: NavigationBarLayout.OnNavigationBarLayout*/
+
+    private void refreshView(){
+        refreshQuestionTv();
+        refreshQuestionDescriptionTv();
+    }
+
+    private void refreshQuestionTv(){
+        if(null!=mAlgorithmQuestion){
+
+            ViewUtil.showTextHighlightLink(mQuestionTv,mAlgorithmQuestion.getQuestion(),mAlgorithmQuestion.getQuestionSource());
+        }
+    }
+
+    private void refreshQuestionDescriptionTv(){
+        if(null!=mAlgorithmQuestion){
+            mQuestionDescriptionTv.setText(mAlgorithmQuestion.getQuestionDescription());
+        }
+    }
+
+    private void viewReferenceSolution(long id){
+        ToastUtil.toastLengthshort(getContext(),"viewReferenceSolution "+id);
+    }
+
 }
