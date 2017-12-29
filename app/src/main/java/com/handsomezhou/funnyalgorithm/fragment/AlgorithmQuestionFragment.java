@@ -15,16 +15,23 @@ import com.handsomezhou.funnyalgorithm.R;
 import com.handsomezhou.funnyalgorithm.adapter.AlgorithmQuestionAdapter;
 import com.handsomezhou.funnyalgorithm.model.AlgorithmQuestion;
 import com.handsomezhou.funnyalgorithm.model.AlgorithmQuestionDetailsParameter;
+import com.handsomezhou.funnyalgorithm.pathfinding.model.Coordinate;
+import com.handsomezhou.funnyalgorithm.pathfinding.util.PathFindingUtil;
+import com.handsomezhou.funnyalgorithm.util.JsonUtil;
+import com.handsomezhou.funnyalgorithm.util.LogUtil;
 import com.handsomezhou.funnyalgorithm.util.ToastUtil;
 import com.handsomezhou.funnyalgorithm.util.ViewUtil;
 import com.handsomezhou.funnyalgorithm.view.RecycleViewDivider;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by zhoujq on 2017/10/31.
  */
 
 public class AlgorithmQuestionFragment extends BaseFragment implements AlgorithmQuestionAdapter.OnAlgorithmQuestionAdapter{
-
+    private static final String TAG = "AlgorithmQuestionFragment";
     //private List<AlgorithmQuestion> mAlgorithmQuestions;
     private RecyclerView mAlgorithmQuestionRv;
     private TextView mNoDataTipsTv;
@@ -88,8 +95,8 @@ public class AlgorithmQuestionFragment extends BaseFragment implements Algorithm
             if(null==algorithmQuestion){
                 break;
             }
-
-            //ToastUtil.toastLengthshort(getContext(),algorithmQuestion.getQuestion());
+            test();
+            ToastUtil.toastLengthshort(getContext(),algorithmQuestion.getQuestion()+"test");
         }while (false);
 
     }
@@ -124,5 +131,29 @@ public class AlgorithmQuestionFragment extends BaseFragment implements Algorithm
             }
         }
         return;
+    }
+
+    private void test(){
+        Coordinate minCoordinate=new Coordinate(0,0);
+        Coordinate maxUpCoordinate=new Coordinate(10,10);
+        Coordinate startCoordinate=new Coordinate(0,0);
+        Coordinate endCoordinate=new Coordinate(0,0);
+        List<Coordinate > traverseCoordinates=new ArrayList<>();
+        traverseCoordinates.add(new Coordinate(5,6));
+        traverseCoordinates.add(new Coordinate(2,2));
+        traverseCoordinates.add(new Coordinate(9,6));
+
+        List< Coordinate > notTraverseCoordinates=null;
+
+        List<Coordinate> coordinates=PathFindingUtil.getPath(minCoordinate,maxUpCoordinate,startCoordinate,endCoordinate,traverseCoordinates,notTraverseCoordinates);
+        int i=0;
+        if(null!=coordinates){
+            for(Coordinate coordinate:coordinates){
+                i++;
+                LogUtil.i(TAG, "["+i+"]"+JsonUtil.toJson(coordinate));
+            }
+        }
+
+        LogUtil.i(TAG, "["+i+"]");
     }
 }

@@ -12,7 +12,7 @@ import java.util.Comparator;
 
 public class Grid {
     private int mId=-1;
-    Point mPoint;//坐标
+    private Coordinate mCoordinate;//坐标
     int mGridType = GridType.NONE;//标签
     private String mTag;
     /*start: A star*/
@@ -28,17 +28,17 @@ public class Grid {
     public Grid left=null;
 
     public Grid() {
-        mPoint=new Point(-1,-1);
+        mCoordinate=new Coordinate(-1,-1);
         resetAStarValue();
     }
 
     public Grid(int x, int y){
-        mPoint=new Point(x,y);
+        mCoordinate=new Coordinate(x,y);
         resetAStarValue();
     }
 
-    public Grid(Point point) {
-        mPoint = point;
+    public Grid(Coordinate coordinate) {
+        mCoordinate = coordinate;
         resetAStarValue();
     }
 
@@ -81,12 +81,12 @@ public class Grid {
         mId = id;
     }
 
-    public Point getPoint() {
-        return mPoint;
+    public Coordinate getCoordinate() {
+        return mCoordinate;
     }
 
-    public void setPoint(Point point) {
-        mPoint = point;
+    public void setCoordinate(Coordinate coordinate) {
+        mCoordinate = coordinate;
     }
 
     public int getGridType() {
@@ -152,7 +152,7 @@ public class Grid {
                 break;
             }
 
-            valid=(grid.getPoint().x>=0)&&(grid.getPoint().y>=0);
+            valid=(grid.getCoordinate().x>=0)&&(grid.getCoordinate().y>=0);
         }while (false);
 
         return valid;
