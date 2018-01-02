@@ -95,8 +95,8 @@ public class AlgorithmQuestionFragment extends BaseFragment implements Algorithm
             if(null==algorithmQuestion){
                 break;
             }
-            test();
-            ToastUtil.toastLengthshort(getContext(),algorithmQuestion.getQuestion()+"test");
+
+            //ToastUtil.toastLengthshort(getContext(),algorithmQuestion.getQuestion()+"test");
         }while (false);
 
     }
@@ -133,27 +133,5 @@ public class AlgorithmQuestionFragment extends BaseFragment implements Algorithm
         return;
     }
 
-    private void test(){
-        Coordinate minCoordinate=new Coordinate(0,0);
-        Coordinate maxUpCoordinate=new Coordinate(10,10);
-        Coordinate startCoordinate=new Coordinate(0,0);
-        Coordinate endCoordinate=new Coordinate(0,0);
-        List<Coordinate > traverseCoordinates=new ArrayList<>();
-        traverseCoordinates.add(new Coordinate(5,6));
-        traverseCoordinates.add(new Coordinate(2,2));
-        traverseCoordinates.add(new Coordinate(9,6));
 
-        List< Coordinate > notTraverseCoordinates=null;
-
-        List<Coordinate> coordinates=PathFindingUtil.getPath(minCoordinate,maxUpCoordinate,startCoordinate,endCoordinate,traverseCoordinates,notTraverseCoordinates);
-        int i=0;
-        if(null!=coordinates){
-            for(Coordinate coordinate:coordinates){
-                i++;
-                LogUtil.i(TAG, "["+i+"]"+JsonUtil.toJson(coordinate));
-            }
-        }
-
-        LogUtil.i(TAG, "["+i+"]");
-    }
 }

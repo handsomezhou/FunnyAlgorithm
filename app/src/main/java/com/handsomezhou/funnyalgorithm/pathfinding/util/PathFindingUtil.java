@@ -22,7 +22,7 @@ public class PathFindingUtil {
 
 
     /**
-     * 根据平面坐标系中的参数,得到一条从开始坐标开始,经历需要遍历的坐标(绕过所有不能够遍历的坐标,不超过最小最大坐标),最后到达结束坐标结束的一条路径.
+     * 根据平面坐标系中的参数,得到一条从开始坐标开始,经历需要遍历的坐标列表(绕过所有不能够遍历的坐标列表,不超过最小、最大坐标),最后到达结束坐标结束的一条路径.
      *
      * @param minCoordinate          最小坐标
      * @param maxUpCoordinate        最大坐标
@@ -33,7 +33,7 @@ public class PathFindingUtil {
      * @return
      */
     public static List<Coordinate> getPath(@NonNull Coordinate minCoordinate, @NonNull Coordinate maxUpCoordinate, @NonNull Coordinate startCoordinate, @NonNull Coordinate endCoordinate, List<Coordinate> traverseCoordinates, List<Coordinate> notTraverseCoordinates) {
-        List<Coordinate> coordinateList = new ArrayList<>();
+        List<Coordinate> pathCoordinateList = new ArrayList<>();
         //网格头指针
         Grid headGrid = new Grid();
 
@@ -58,13 +58,16 @@ public class PathFindingUtil {
             initNotTraverseCoordinates(headGrid, notTraverseCoordinates);
 
             //打印日志
-            log(headGrid);
+            //log(headGrid);
             //生成路径
-            generatePath(headGrid,startCoordinate,endCoordinate,traverseCoordinates,coordinateList);
-
+            generatePath(headGrid,startCoordinate,endCoordinate,traverseCoordinates,pathCoordinateList);
+            boolean valid=validPath(pathCoordinateList,startCoordinate,endCoordinate,traverseCoordinates);
+            if(false==valid){
+                pathCoordinateList.clear();
+            }
         } while (false);
 
-        return coordinateList;
+        return pathCoordinateList;
     }
 
 
@@ -105,28 +108,68 @@ public class PathFindingUtil {
             int traverseCoordinatesSize=traverseCoordinates.size();
             Grid grid=null;
             for(int i=0; i<=traverseCoordinatesSize; i++){
+               // LogUtil.i(TAG,i+"start-----------------------------------------");
                 if(0==i){
                     coordinateList.addAll(PathFindingUtil.aStar(headGrid,startCoordinate,traverseCoordinates.get(i)));
+                    //移除最后一个坐标,因为在下一点路径规划中将会以此坐标开始
+                    coordinateList.remove(coordinateList.size()-1);
                     grid=get(headGrid,traverseCoordinates.get(i));
                 }else if((traverseCoordinatesSize)==i){
                     coordinateList.addAll(PathFindingUtil.aStar(headGrid,traverseCoordinates.get(i-1),endCoordinate));
                     grid=get(headGrid,traverseCoordinates.get(i-1));
                 }else {
                     coordinateList.addAll(PathFindingUtil.aStar(headGrid,traverseCoordinates.get(i-1),traverseCoordinates.get(i)));
+                    //移除最后一个坐标,因为在下一点路径规划中将会以此坐标开始
+                    coordinateList.remove(coordinateList.size()-1);
                     grid=get(headGrid,traverseCoordinates.get(i));
                 }
 
                 if(null!=grid){
                     grid.setGridType(GridType.NONE);
                 }
-                log(headGrid);
-                LogUtil.i(TAG,i+"-----------------------------------------");
+                //log(headGrid);
+                //LogUtil.i(TAG,i+"end-----------------------------------------");
             }
 
         }while (false);
 
         return;
     }
+
+
+    /**
+     * 是否有效路径
+     * @param pathCoordinateList 路径坐标列表
+     * @param startCoordinate    开始坐标
+     * @param endCoordinate      结束坐标
+     * @param traverseCoordinates 能够遍历的坐标
+     * @return
+     */
+    private static boolean validPath(final List<Coordinate> pathCoordinateList, @NonNull Coordinate startCoordinate, @NonNull Coordinate endCoordinate, List<Coordinate> traverseCoordinates){
+        boolean valid=true;
+        do{
+            if(false==Coordinate.contains(pathCoordinateList,startCoordinate)){
+                valid=false;
+                break;
+            }
+
+            if(false==Coordinate.contains(pathCoordinateList,endCoordinate)){
+                valid=false;
+                break;
+            }
+
+            for (Coordinate coordinate:traverseCoordinates) {
+                boolean contain=Coordinate.contains(pathCoordinateList,coordinate);
+                if(false==contain){
+                    valid=false;
+                    break;
+                }
+            }
+        }while (false);
+
+        return valid;
+    }
+
     /**
      * 初始化网格
      *

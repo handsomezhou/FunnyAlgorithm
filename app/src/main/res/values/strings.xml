@@ -16,4 +16,9 @@
     <string name="no_data">无数据</string>
     <string name="settings">设置</string>
     <string name="about">关于</string>
+
+    <!-- start:pathfinding -->
+    <string name="path_finding">路径规划</string>
+    <string name="generate_path">生成路径</string>
+    <!-- end:pathfinding-->
 </resources>

@@ -1,5 +1,7 @@
 package com.handsomezhou.funnyalgorithm.pathfinding.model;
 
+import java.util.List;
+
 /**
  * Created by handsomezhou on 2017/12/18.
  */
@@ -70,5 +72,36 @@ public class Coordinate {
         }while (false);
 
         return equal;
+    }
+
+    /**
+     * 坐标列表中是否包含某坐标
+     * @param coordinates
+     * @param coordinate
+     * @return
+     */
+    public static boolean contains(List<Coordinate> coordinates,Coordinate coordinate){
+        boolean contain=false;
+        do{
+            if(null==coordinates||coordinates.size()<=0){
+                break;
+            }
+
+            if(null==coordinate){
+                contain=true;
+                break;
+            }
+
+            int coordinatesSize=coordinates.size();
+            for(int i=0; i<coordinatesSize;i++){
+                boolean equal=Coordinate.equals(coordinates.get(i),coordinate);
+                if(true==equal){
+                    contain=true;
+                    break;
+                }
+
+            }
+        }while (false);
+        return contain;
     }
 }

@@ -3,6 +3,7 @@
     <!-- start: algorithm_questions -->
     <string-array name="algorithm_questions">
         <item>{\"id\":1,\"question\":\"一个格子摆放的随机排序的算法？\",\"questionDescription\":\"已知外部的大格子的总面积、长、宽是固定，其中分割的格子数也是固定的13个（不一定是13个，这个只是举例，但是随机前知道多少格）。现在我需求是想用某个算法，通过程序去做一个随机，让13个格子的位置随机变化（13个格子的面积、长、宽需要有限制，如面积不小于xx，长和宽不小于xx）。这应该是个比较复杂的算法，可以帮忙给出逻辑即可。\",\"questionSource\":\"https://www.zhihu.com/question/48397239\",\"knowledgeKeywords\":\"[\\\"递归\\\",\\\"深度搜索\\\"]\"}</item>
+        <item>{\"id\":2,\"question\":\"路径规划算法？\",\"questionDescription\":\"在平面坐标系中,生成一条从开始坐标开始,经历需要遍历的坐标列表(绕过所有不能够遍历的坐标列表,不超过最小、最大坐标),最后到达结束坐标结束的一条路径.\",\"questionSource\":\"https://github.com/handsomezhou/FunnyAlgorithm\",\"knowledgeKeywords\":\"[\\\"路径规划\\\",\\\"A*搜索算法\\\"]\"}</item>
     </string-array>
     <!-- end: algorithm_questions -->
 </resources>
