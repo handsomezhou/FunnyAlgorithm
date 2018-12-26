@@ -1,7 +1,4 @@
 <resources>
-<!--
-    <string name="app_name">FunnyAlgorithm</string>
--->
     <string name="app_name">趣味算法</string>
     <string name="action_settings">Settings</string>
 

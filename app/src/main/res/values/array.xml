@@ -4,6 +4,15 @@
     <string-array name="algorithm_questions">
         <item>{\"id\":1,\"question\":\"一个格子摆放的随机排序的算法？\",\"questionDescription\":\"已知外部的大格子的总面积、长、宽是固定，其中分割的格子数也是固定的13个（不一定是13个，这个只是举例，但是随机前知道多少格）。现在我需求是想用某个算法，通过程序去做一个随机，让13个格子的位置随机变化（13个格子的面积、长、宽需要有限制，如面积不小于xx，长和宽不小于xx）。这应该是个比较复杂的算法，可以帮忙给出逻辑即可。\",\"questionSource\":\"https://www.zhihu.com/question/48397239\",\"knowledgeKeywords\":\"[\\\"递归\\\",\\\"深度搜索\\\"]\"}</item>
         <item>{\"id\":2,\"question\":\"路径规划算法？\",\"questionDescription\":\"在平面坐标系中,生成一条从开始坐标开始,经历需要遍历的坐标列表(绕过所有不能够遍历的坐标列表,不超过最小、最大坐标),最后到达结束坐标结束的一条路径.\",\"questionSource\":\"https://github.com/handsomezhou/FunnyAlgorithm\",\"knowledgeKeywords\":\"[\\\"路径规划\\\",\\\"A*搜索算法\\\"]\"}</item>
+        <!--https://blog.csdn.net/cherry_chenrui/article/details/79218517 -->
+        <item>{\"id\":3,\"question\":\"排列组合？\",\"questionDescription\":\"有M个数字,有N个选项,每个选项从M个数字任选一个数字,确保N1&lt;=N2&lt;=...&lt;=Nn, \n请问有多少种组合方式(只求组合方式数量,不要求枚举),推导或直接给出相关公式即可?\n PS:M,N均为大于0的自然数
+            \n示例:
+            \n有M=2个数字{1,2},有N=3个选项{N1,N2,N3},从M=2个数字任选一个,确保N1&lt;=N2&lt;=N3 组合方式有4种组合方式
+            \n{N1,N2,N3}
+            \n{1,1,1}
+            \n{1,1,2}
+            \n{1,2,2}
+            \n{2,2,2}\",\"questionSource\":\"https://github.com/handsomezhou/FunnyAlgorithm\",\"knowledgeKeywords\":\"[\\\"递归\\\",\\\"排列组合\\\"]\"}</item>
     </string-array>
     <!-- end: algorithm_questions -->
 </resources>
